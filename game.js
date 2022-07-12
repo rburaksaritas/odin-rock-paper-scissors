@@ -27,7 +27,7 @@ function playRound(playerSelection, computerSelection){
         } else if (computerSelection == "paper"){
             return("You Lose! Paper beats Rock.");
         } else{
-            return ("You Win! Rock beats Scissors.");
+            return("You Win! Rock beats Scissors.");
         }
     } 
     else if (playerSelection == "paper"){
@@ -36,16 +36,17 @@ function playRound(playerSelection, computerSelection){
         } else if (computerSelection == "paper"){
             return("Tie!");
         } else{
-            return ("You Lose! Scissors beats Paper.");    
+            return("You Lose! Scissors beats Paper.");    
         }
     }
-    else{
+    else if (playerSelection == "scissors"){
         if (computerSelection == "rock"){
             return("You Lose! Rock beats Scissors.");
         } else if (computerSelection == "paper"){
             return("You Win! Scissors beats Paper");
-        } else return ("Tie!");
+        } else return("Tie!");
     }
+    else return("Invalid input. Try again.")
 }
 
 // Play game for 5 rounds.
@@ -59,7 +60,10 @@ function game(){
         let computerSelection = computerPlay();
         let result = playRound(playerSelection, computerSelection);
         console.log(result);
-        
+        if (result.toLowerCase().charAt(0)==="i"){
+            i--;
+            continue;
+        }
         if (result.toLowerCase().charAt(0)!="t"){ // t if tie.
             let status = result.toLowerCase().charAt(4); // w if win, l if lose.
             if (status=="w"){
