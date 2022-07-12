@@ -1,9 +1,9 @@
-// Return random number between 1 and 3.
+// Returns a random number between 1 and 3.
 function randomBetweenInterval(min = 1, max = 3){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// Match random number with rock, paper or scissors.
+// Matches the random number with rock, paper or scissors.
 function computerPlay(){
     let randomNumber = randomBetweenInterval();
     if (randomNumber === 1){
@@ -13,9 +13,9 @@ function computerPlay(){
     } else return "Scissors";
 }
 
-// Play a single round of the game.
-// Take player selection and computer selection as parameters.
-// Return message that declares the winner.
+// Plays a single round of the game.
+// Takes player selection and computer selection as parameters.
+// Returns message that declares the winner.
 function playRound(playerSelection, computerSelection){
     
     playerSelection = playerSelection.toLowerCase();
@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection){
     else return("Invalid input. Try again.")
 }
 
-// Play game for 5 rounds.
+// Plays game for 5 rounds.
 function game(){
 
     let playerScore = 0;
