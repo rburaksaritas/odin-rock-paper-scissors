@@ -13,9 +13,6 @@ function computerPlay(){
     } else return "Scissors";
 }
 
-let playerScore = 0;
-let computerScore = 0;
-
 // Play a single round of the game.
 // Take player selection and computer selection as parameters.
 // Return message that declares the winner.
@@ -28,30 +25,24 @@ function playRound(playerSelection, computerSelection){
         if (computerSelection == "rock"){
             return("Tie!");
         } else if (computerSelection == "paper"){
-            computerScore++;
             return("You Lose! Paper beats Rock.");
         } else{
-            playerScore++;
             return ("You Win! Rock beats Scissors.");
         }
     } 
     else if (playerSelection == "paper"){
         if (computerSelection == "rock"){
-            playerScore++;
             return("You Win! Paper beats Rock.");
         } else if (computerSelection == "paper"){
             return("Tie!");
         } else{
-            computerScore++;
             return ("You Lose! Scissors beats Paper.");    
         }
     }
     else{
         if (computerSelection == "rock"){
-            computerScore++;
             return("You Lose! Rock beats Scissors.");
         } else if (computerSelection == "paper"){
-            playerScore++;
             return("You Win! Scissors beats Paper");
         } else return ("Tie!");
     }
@@ -59,12 +50,25 @@ function playRound(playerSelection, computerSelection){
 
 // Play game for 5 rounds.
 function game(){
+
+    let playerScore = 0;
+    let computerScore = 0;
+
     for (let i = 0; i < 5; i++){
         let playerSelection = prompt("Selecet your move: Rock, Paper or Scissors?");
         let computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
+        let result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        
+        if (result.toLowerCase().charAt(0)!="t"){ // t if tie.
+            let status = result.toLowerCase().charAt(4); // w if win, l if lose.
+            if (status=="w"){
+                playerScore++;
+            } else computerScore++;
+        }
         console.log("player (" + playerScore + ") - (" + computerScore + ") computer");
     }
+
     if (playerScore>computerScore){
         console.log("Winner: Player!");
     } else if (playerScore===computerScore){
