@@ -16,12 +16,11 @@ function computerPlay(){
 // Play a single round of the game.
 // Take player selection and computer selection as parameters.
 // Return message that declares the winner.
-function round(playerSelection, computerSelection){
+function playRound(playerSelection, computerSelection){
     
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
-    console.log(playerSelection + ", " + computerSelection);
-    
+
     if (playerSelection == "rock"){
         if (computerSelection == "rock"){
             return("Tie!");
