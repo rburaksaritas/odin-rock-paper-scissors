@@ -55,22 +55,26 @@ function game(){
     let playerScore = 0;
     let computerScore = 0;
 
-    for (let i = 0; i < 5; i++){
+    let gameover = false;
+
+    while(!gameover){
         let playerSelection = prompt("Selecet your move: Rock, Paper or Scissors?");
         let computerSelection = computerPlay();
         let result = playRound(playerSelection, computerSelection);
         console.log(result);
-        if (result.toLowerCase().charAt(0)==="i"){
-            i--;
-            continue;
-        }
+
         if (result.toLowerCase().charAt(0)!="t"){ // t if tie.
             let status = result.toLowerCase().charAt(4); // w if win, l if lose.
             if (status=="w"){
                 playerScore++;
             } else computerScore++;
         }
+
         console.log("player (" + playerScore + ") - (" + computerScore + ") computer");
+        
+        if(playerScore==5 || computerScore==5){
+            gameover = true;
+        }
     }
 
     if (playerScore>computerScore){
@@ -79,3 +83,4 @@ function game(){
         console.log("Tie!");
     } else console.log("Winner: Computer!");
 }
+
