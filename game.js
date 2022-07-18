@@ -49,7 +49,7 @@ function playRound(playerSelection, computerSelection){
     else return("Invalid input. Try again.")
 }
 
-// Plays game for 5 rounds.
+// Plays game until one of the scores reaches 5.
 function game(){
 
     let playerScore = 0;
@@ -84,9 +84,11 @@ function game(){
     } else console.log("Winner: Computer!");
 }
 
+// Takes username input and modify scoreboard accordingly.
 function initialize(){
     let userName = prompt("Enter your name:", "Player");
-    console.log(userName);
+    const scoreboard = document.querySelector(".scoreboard");
+    scoreboard.textContent = `${userName} 0 - 0 Computer`;
 }
 
 initialize();
