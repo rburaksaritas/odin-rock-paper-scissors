@@ -84,3 +84,9 @@ function game(){
     } else console.log("Winner: Computer!");
 }
 
+function initialize(){
+    let userName = prompt("Enter your name:", "Player");
+    console.log(userName);
+}
+
+initialize();
