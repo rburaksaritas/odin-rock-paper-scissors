@@ -95,12 +95,6 @@ function game(){
         }));
     }
 
-    
-
-        //let playerSelection = prompt("Selecet your move: Rock, Paper or Scissors?");
-       
-
-
 // Takes username input and modify scoreboard accordingly.
 function initialize(){
     let userName = prompt("Enter your name:", "Player");
