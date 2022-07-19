@@ -51,44 +51,94 @@ function playRound(playerSelection, computerSelection){
 
 // Plays game until one of the scores reaches 5.
 function game(){
-
+    let userName = initialize();
     let playerScore = 0;
     let computerScore = 0;
 
     let gameover = false;
-
-    while(!gameover){
-        let playerSelection = prompt("Selecet your move: Rock, Paper or Scissors?");
-        let computerSelection = computerPlay();
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result);
-
-        if (result.toLowerCase().charAt(0)!="t"){ // t if tie.
-            let status = result.toLowerCase().charAt(4); // w if win, l if lose.
-            if (status=="w"){
-                playerScore++;
-            } else computerScore++;
-        }
-
-        console.log("player (" + playerScore + ") - (" + computerScore + ") computer");
+        const buttons = document.querySelectorAll(".moveButton");
+        buttons.forEach(button => button.addEventListener("click", function(){
+            if (!gameover){
+                let playerSelection = this.textContent;
+                let computerSelection = computerPlay();
+                updateSelectionInfo(playerSelection, computerSelection);
         
-        if(playerScore==5 || computerScore==5){
-            gameover = true;
-        }
+                let result = playRound(playerSelection, computerSelection);
+                updateRoundResultMessage(result);
+                console.log(result);
+
+                if (result.toLowerCase().charAt(0)!="t"){ // t if tie.
+                    let status = result.toLowerCase().charAt(4); // w if win, l if lose.
+                    if (status=="w"){
+                        playerScore++;
+                    } else computerScore++;
+                }
+
+                console.log("player (" + playerScore + ") - (" + computerScore + ") computer");
+                updateScoreboard(userName, playerScore, computerScore);
+            
+                if(playerScore==5 || computerScore==5){
+                    gameover = true;
+                    let gameResultMessage;
+                    if (playerScore>computerScore){
+                        console.log("Winner: Player!");
+                        gameResultMessage = `Winner: ${userName}!`
+                    } else if (playerScore===computerScore){
+                        console.log("Tie!");
+                    } else {
+                        console.log("Winner: Computer!");
+                        gameResultMessage = `Winner: Computer... Better luck next time!`
+                    } 
+                    displayResult(gameResultMessage);
+                }
+            }
+        }));
     }
 
-    if (playerScore>computerScore){
-        console.log("Winner: Player!");
-    } else if (playerScore===computerScore){
-        console.log("Tie!");
-    } else console.log("Winner: Computer!");
-}
+    
+
+        //let playerSelection = prompt("Selecet your move: Rock, Paper or Scissors?");
+       
+
 
 // Takes username input and modify scoreboard accordingly.
 function initialize(){
     let userName = prompt("Enter your name:", "Player");
     const scoreboard = document.querySelector(".scoreboard");
     scoreboard.textContent = `${userName} 0 - 0 Computer`;
+    return userName;
 }
 
-initialize();
+function updateScoreboard(userName, playerScore, computerScore){
+    const scoreboard = document.querySelector(".scoreboard");
+    scoreboard.textContent = `${userName} ${playerScore} - ${computerScore} Computer`;
+    console.log(scoreboard.textContent);
+}
+
+function updateSelectionInfo(playerSelection, computerSelection){
+    const playerSelectionInfo = document.querySelector(".player-selection");
+    const computerSelectionInfo = document.querySelector(".computer-selection");
+    playerSelectionInfo.textContent = `You picked: ${playerSelection}`;
+    computerSelectionInfo.textContent = `You picked: ${computerSelection}`;
+}
+
+function updateRoundResultMessage(message){
+    const roundMessage = document.querySelector(".round-message");
+    roundMessage.textContent = message;
+}
+
+function getMove(){
+    return this.textContent;
+}
+
+function displayResult(message){
+    const result = document.createElement("p");
+    result.textContent = message;
+    const refreshMessage = document.createElement("p");
+    refreshMessage.textContent = "Refresh page to play again."
+    const body = document.querySelector("body");
+    body.appendChild(result);
+    body.appendChild(refreshMessage);
+}
+
+game();
