@@ -44,7 +44,15 @@ font-size: large;
 border-radius: 10px;
 border: 0px;
 color: rgb(12, 23, 40);
+}
 
+button:hover{
+    background-color: rgb(200, 200, 200);
+}
+
+button:active {
+  background-color: rgb(150, 150, 150);
+  transform: translateY(2px);
 }
 
 .round-info{
