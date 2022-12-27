@@ -113,7 +113,7 @@ function updateSelectionInfo(playerSelection, computerSelection){
     const playerSelectionInfo = document.querySelector(".player-selection");
     const computerSelectionInfo = document.querySelector(".computer-selection");
     playerSelectionInfo.textContent = `You picked: ${playerSelection}`;
-    computerSelectionInfo.textContent = `You picked: ${computerSelection}`;
+    computerSelectionInfo.textContent = `Computer picked: ${computerSelection}`;
 }
 
 function updateRoundResultMessage(message){
